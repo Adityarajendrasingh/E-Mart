@@ -1,0 +1,296 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Order | E-Mart.com</title>
+    <?php include('links.php'); ?>
+</head>
+<?php include('header_index.php');?>
+<!--/Header-->
+<!--Main-->
+<section id="order">
+    <div class="container">
+        <div class="orderbox py-3">
+            <?php
+                $item_id = $_GET['item_id'];
+                $order_item_id = $_GET['order_product_id'];
+                $stmt= $mysqli->query("SELECT order_checkout.*,order_detail.*,product.*,order_status.status as order_status,order_status.id as detail_order_status,user_address.address from order_checkout,order_detail,product,order_status,user_address WHERE order_detail.order_id = order_checkout.id AND order_detail.id = $order_item_id AND order_detail.item_id = product.item_id AND order_checkout.order_status = order_status.id ") or die($mysqli->error);
+                $query = mysqli_num_rows($stmt);
+
+                while($row = mysqli_fetch_assoc($stmt))
+                    {
+                        $added_on=$row['added_on'];
+                        $strtotime=strtotime($added_on);
+                        $time=date('d/m/Y h:i A',$strtotime);
+                            
+            ?>
+            <div class="userdetails">
+                <div class="row">
+                    <div class="col useraddress userinfo">
+                        <span class="userinfo_title">Delivery Address</span>
+                        <span class="order_udetail">
+                            <?php echo $_SESSION['Uname'];?>&nbsp;
+                            <?php  echo $_SESSION['Lname'] ;?>
+                        </span>
+                        <p class="uadd">
+                            <?php echo $row['address'];?>
+                        </p>
+                    </div>
+                    <?php 
+                   
+                    $status = $row['order_status'];
+                    if($status == 'Cancelled')
+                    {
+
+                    }
+                    else
+                    {
+                    ?>
+                    <div class="col invoice userinfo">
+                        <span class="userinfo_title">Download Receipt</span>
+                        <span class="order_udetail ">Download Invoice:</span><button class="btn btn-info"><a
+                                href="orderpdf.php?orderid=<?php echo $row['order_id'] ?>"
+                                class="order-download_invoice"><i class="fas fa-download"></i>
+                                Download</a></button></span>
+                    </div>
+                    <?php }
+                    ?>
+                    <div class="col paymentdetail userinfo">
+                        <span class="userinfo_title">Order & Payment Detail</span>
+                        <span class="order_udetail"><strong>Order ID : </strong>
+                            <?php echo $row['order_id']; ?>
+                        </span>
+                        <span class="order_udetail"><b>Payment Mode : </b>
+                            <?php echo $row['payment_type']; ?>
+                        </span><br>
+                        <?php 
+                            if($row['payment_type']=="Card/Debit Card/ATM Card")
+                            {
+                                $orderid=$row['order_id'];
+                                $sql = $mysqli->query("SELECT * FROM card_payment where user_id = '".$_SESSION['Uid']."' AND order_id = $orderid ") or die($mysqli->error);
+                                while($resu = mysqli_fetch_assoc($sql))
+                                {
+                        ?>
+                        <h5>Transaction ID :</h5><span>
+                            <?php echo $resu['payment_id']; ?>
+                        </span>
+                        <?php
+                            } }
+                        ?>
+                    </div>
+                    <div class="col orderdate userinfo">
+                        <span class="userinfo_title">Order Date</span>
+                        <span class="order_udetail">
+                            <?php echo $time ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="header">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="images/<?php echo $row['item_images'] ?>" class="img-fluid" alt="">
+                    </div>
+                    <div class="col order-product_name" id="orderdetail">
+                        <h5 class="order_udetail"><a href="product.html?item_id=<?= $row['item_id'];?>"><b>
+                                    <?php echo $row['item_name'];?>
+                                </b></a></h5>
+                        <span>Qty:
+                            <?php echo $row['item_qty'];?>
+                        </span>
+                        <span>₹
+                            <?php echo $row['item_price'];?>
+                        </span>
+                    </div>
+
+                    <div class="col order-status">
+                        <span>Order Status:</span>
+                        <?php
+                        $status = trim($row['order_status']);
+                        if($status=='Complete')
+                        {?>
+                        <span> <i class="fas fa-circle text-success"></i> Delivered on
+                            <?php echo $row['order_deliverydate'];?>
+                        </span>
+                        <?php
+                        }   else if($status=='Cancelled')
+                        {
+                          
+                            ?>
+                        <span class="text-danger"><i class="far fa-times-circle"></i> Cancelled</span><br>
+                        <?php
+                            if($row['payment_type']=="Card/Debit Card/ATM Card")
+                            {
+                              ?>
+                        <span class="text-success">The
+                            Refund will be initiated within two working days</span>
+                        <?php
+                            }
+                        }
+                        else
+                        {                   
+                        ?>
+                        <span>Delivery by <?php echo $row['order_deliverydate'];?></span>
+                        <?php }?>
+
+
+                    </div>
+                    <?php
+                    if($status!='Complete' && $status!='Cancelled')
+                    {?>
+                    <div class="col cancel_order_btn">
+                        <button type="button" class="btn btn-outline-danger" id="cancel_order"
+                            data-id="<?php echo $row['order_id']?>"><i class="fas fa-times"></i> Cancel the order</button>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+
+            <br>
+            <hr>
+            <div class="delivered_message">
+                <?php
+                $Ostatus = trim($row['order_status']);
+                if($Ostatus=="Complete")
+                {
+            ?>
+                <span class="text-success">Your item has been delivered</span>
+                <?php
+                }
+            ?>
+            </div>
+            <div class="progress_bar">
+                <h4>Track Your Order</h4>
+                <ul class="text-center ">
+                    <?php
+                        $sql=$mysqli->query("select distinct order_checkout.*,order_detail.* from order_checkout,order_detail where  (order_detail.user_id ='".$_SESSION['Uid']."' and order_detail.item_id =  $item_id) and order_detail.order_id=order_checkout.id and $item_id AND order_detail.id = $order_item_id")or die($mysqli->error);
+                       
+                        if(mysqli_num_rows($sql)>0)
+                        {
+                            $html='';
+                            $html1='';
+                            while($res=mysqli_fetch_assoc($sql))
+                            {
+                                $status = $res['order_status'];
+                                if($status==1)
+                                {
+                                    $icon1="fa-check";
+                                    $icon2="fa-sync-alt";
+                                    $icon3="fa-times";
+                                    $icon4="fa-times";
+                                    $status1="complete";
+                                    $status2="process";
+                                    $status3="pending";
+                                    $status4="pending";
+                                    $status5="displaynon";
+                                }
+                                else if($status==2)
+                                {
+                                    $icon1="fa-check";
+                                    $icon2="fa-check";
+                                    $icon3="fa-sync-alt";
+                                    $icon4="fa-times";
+                                    $status1="complete";
+                                    $status2="complete";
+                                    $status3="process";
+                                    $status4="pending";
+                                    $status5="cancelled";
+                                }
+                                else if($status==3)
+                                {
+                                    $icon1="fa-check";
+                                    $icon2="fa-check";
+                                    $icon3="fa-check";
+                                    $icon4="fa-sync-alt";
+                                    $status1="complete";
+                                    $status2="complete";
+                                    $status3="complete";
+                                    $status4="process";
+                                    $status5="cancelled";
+                                }
+                                else if($status==4)
+                                {
+                                    $icon1="fa-check";
+                                    $icon4="fa-times";
+                                    $icon2="displaynon";
+                                    $icon3="displaynon";
+                                    $status2="displaynon";
+                                    $status4="displaynon";
+                                    $status3="displaynon";
+                                    $status1="complete";
+                                    $status5="cancelled";
+                                    
+                                    $html1.='<li class='.$status5.'><img  src="images/cancel.png" class="mb-2" style="width:72px;"alt=""><br><i class="fas '.$icon4.'"></i><p class="text-danger">Cancelled</p></li>';
+                                   
+                                }
+                                else if($status==5)
+                                {
+                                    $icon1="fa-check";
+                                    $icon2="fa-check";
+                                    $icon3="fa-check";
+                                    $icon4="fa-check";
+                                    $status1="complete";
+                                    $status2="complete";
+                                    $status3="complete";
+                                    $status4="complete";
+                                }
+                               $html.='<li class='.$status1.'><img src="https://i.imgur.com/9nnc9Et.png" class="img-fluid" alt=""><br><i class="fas '.$icon1.' "></i><p>ordered</p></li><li class='.$status2.'><img src="https://i.imgur.com/u1AzR7w.png" class="img-fluid" alt=""><br><i class="fas '.$icon2.'"></i><p>packed</p></li><li class='.$status3.'><img src="https://i.imgur.com/TkPm63y.png" class="img-fluid" alt=""><br><i class="fas '.$icon3.'"></i><p>shipped</p></li><li class='.$status4.'><img  src="https://i.imgur.com/HdsziHP.png" class="img-fluid" alt=""><br><i class="fas '.$icon4.'"></i><p>delivered</p></li>'.$html1;
+                            }
+                            echo $html;
+                        } 
+                    ?>
+                </ul>
+            </div>
+        </div>
+        <?php  } ?>
+        <br>
+        <br>
+
+    </div>
+</section>
+<!--/Main-->
+
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->
+<script>
+    $(document).ready(function () {
+        $("#cancel_order").on('click', function () {
+            var id = $(this).attr('data-id');
+            // alert(id);
+            Swal.fire({
+                title: 'Are you sure you want to cancel your order?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'order_detail.php',
+                        type: 'post',
+                        data: { id: id },
+                        success: function (result) {
+                            Swal.fire(
+                                'Your order is cancelled!',
+                                '',
+                                'success'
+                            ).then((result) => {
+                                window.location.href = window.location.href;
+                            });
+
+                        }
+                    });
+                }
+            });
+
+
+        });
+    });
+</script>

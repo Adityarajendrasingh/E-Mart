@@ -1,0 +1,162 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_login | www.emart.com</title>
+    <style type="text/css">
+        @media (min-width: 220px) and (max-width: 768px) {
+            .logo_emart {
+                display: none;
+            }
+        }
+    </style>
+    <?php include('links.php'); ?>
+
+</head>
+
+
+<?php include('header_index.php');?>
+<!--/Header-->
+<main id="main-site">
+    <div class="login_user container">
+        <div class="login-userpage">
+            <div class="row">
+                <br>
+                <div class="col-xl-6 col-12 left-side">
+                    <div class="banner">
+                        <img src="images/login.png">
+                    </div>
+
+                </div>
+                <div class="col-xl-6 col-12">
+                    <div class="right-side">
+                        <div class="logo">
+                            <a href="index.html"><img src="images/emart_logo.PNG" alt=""></a>
+                            <span>E-Mart</span>
+                        </div>
+                        <div class="greeting">
+                            <span>Get access to your Orders,Cart and Wishlist</span>
+                        </div>
+                        <div class="login_form">
+                            <form class="form needs-validation" id="form" novalidate action="user_login.php" method="POST">
+                                <div class="login_header">
+                                    <hr>
+                                    <h6>Are you a New Customer?</h6>
+                                    <a href="user_signup.html" class="float-right px-3">SignUp Here</a>
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <h5>Email ID</h5>
+                                    <input type="email" class="form-control br-radius-zero email" name="lemail" id="uemail"
+                                        placeholder="Email ID" required />
+                                    <div class="invalid-feedback">
+                                        Please enter a valid Email ID.
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Password</h5>
+                                    <input type="password" class="form-control br-radius-zero" name="password"
+                                        id="upassword" placeholder="Password" minlength="6" required />
+                                    <div class="invalid-feedback">
+                                        Please enter a valid Password.
+                                    </div>
+                                </div>
+                                <div class="showpass mb-1">
+                                    <input class="form-control showpwd" type="checkbox" onclick="togglePassword()">
+                                    <span class="showpass_text">Show password</span>
+                                </div>
+                                <div class="login_header mb-1">
+                                    <a href="user_forgotpassword.php" class="px-0 ">Forgot password?</a>
+                                </div>
+                                    
+                                <div class="form-action login-submit-button">
+                                    <button type="submit" name="login" id="login"class="btn btn-outline-primary w-100">Login</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                    
+
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+
+</main>
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<?php
+    if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+{
+?>
+<script>
+
+    swal.fire({
+        title: "<?php echo $_SESSION['msg'];?>",
+        icon: "<?php echo $_SESSION['msg_status'];?>",
+        button: "OK",
+    });
+</script>
+<?php
+unset($_SESSION['msg']);
+}
+?>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    else {
+                        var email = $("input[name=lemail]").val().trim();
+                        var password = $("input[name=password]").val().trim();
+                        $.ajax({
+                            url: 'user_logincheck.php',
+                            type: 'post',
+                            data: { email: email, password: password },
+                            success: function (result) {
+                                swal(
+                                    'Successfully Login!!',
+                                    '',
+                                    'success'
+                                )
+                            }
+                        });
+                    }
+                    form.classList.add('was-validated');
+
+                }, false);
+
+            });
+        }, false);
+    })
+
+        ();
+</script>
+<script>
+    function togglePassword(){
+  var type = document.getElementById("upassword").type;
+  if(type=='password'){
+   document.getElementById("upassword").type = "text";
+   }else{
+    document.getElementById("upassword").type = "password";
+   }
+  }
+  </script>

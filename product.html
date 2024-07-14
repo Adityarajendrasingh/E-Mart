@@ -1,0 +1,329 @@
+<?php 
+include('dbconnection.php');
+?>
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product | E-Mart.com</title>
+  <?php include('links.php'); ?>
+</head>
+
+
+<?php include('header_index.php');?>
+<!--/Header-->
+
+<?php
+  $item_id = $_GET['item_id']; 
+  $result =  $mysqli->query("SELECT product.*,laptop_brand.id,laptop_brand.brand_name as item_brand FROM product,laptop_brand  where product.status='1'  and product.item_brand = laptop_brand.id and laptop_brand.status = '1'") or die($mysqli->error);
+  while($row = $result->fetch_assoc())
+    {       
+      if($item_id==$row['item_id']){
+      $cat_id = $row['categories_id'];
+      $item_desc = $row['item_longdesc'];
+?>
+<main id="main-site">
+  <!--BreadCrumb-->
+  <div class="bread-crumb d-flex py-2">
+    <nav aria-label="breadcrumb text-capitalize">
+      <ol class="breadcrumb text-center">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <span class="bread-separetor"><i class="fas fa-angle-right px-2"></i></span>
+        <li class="breadcrumb-item "><a href="#">
+            <?php $res = $mysqli->query("select * from categories where id = '$cat_id' ");
+          $r = $res->fetch_assoc();
+          echo $r['categories'];
+        ?>
+          </a></li>
+        <span class="bread-separetor"><i class="fas fa-angle-right px-2"></i></span>
+        <li class="breadcrumb-item "><a href="#">
+            <?php echo $row['item_brand'] ?>
+          </a></li>
+        <span class="bread-separetor"><i class="fas fa-angle-right px-2"></i></span>
+        <li class="breadcrumb-item active" aria-current="page"><a href="#">
+            <?php echo $row['item_name'] ?>
+          </a></li>
+      </ol>
+    </nav>
+  </div>
+  <!--/BreadCrumb-->
+  <!-- product -->
+  <section id="product">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 text-center">
+          <img src="images/<?php echo $row['item_images'];?>" alt="Product_image" class="img-fluid">
+          <div class="form-row py-3">
+            <?php 
+                $itemid=$row['item_id'];
+                if(empty($_SESSION['Uname']))
+                {
+                  echo
+                  ' <div class="col">
+                      <a href="user_login.html" class="btn btn-danger from-control proceedtobuy"><span>Proceed to buy</span></a>
+                    </div>
+                    <div class="col">
+                      <a href="cart.html"><button type="submit" name="submit" class="btn btn-warning addtocart"><span>Add to Cart</span></button></a>
+                    </div>';
+                }
+                else
+                {
+                  $itemquery1 = "select * from cart where item_id = '$itemid' ";
+                  $query1 = mysqli_query($mysqli,$itemquery1);
+                  $itemcount1 = mysqli_num_rows($query1);
+                  if(isset($_SESSION['Uname']) && $itemcount1 > 0 )
+                  {
+                    echo
+                    ' <div class="col">
+                        <a href="checkout_action.php?item_id='.$row['item_id'].'" class="btn btn-danger from-control proceedtobuy"><span>Proceed to buy</span></a>
+                      </div>
+                      <div class="col">
+                        <a href="cart.php?item_id='.$row['item_id'].'" class="addtocart_disabled">
+                          <button type="submit" name="submit" class="btn btn-warning" disabled>Product is in the Cart</button>
+                        </a>
+                      </div>';
+                  }
+                  else
+                  {
+                    echo
+                    ' <div class="col">
+                        <a href="checkout_action.php?item_id='.$row['item_id'].'" class="btn btn-danger from-control proceedtobuy"><span>Proceed to buy</span></a>
+                      </div>
+                      <div class="col">
+                        <a href="cart.php?item_id='.$row['item_id'].'" >
+                          <button type="submit" name="submit" class="btn btn-warning addtocart" ><span>Add to Cart</span></button>
+                        </a>
+                      </div>';
+                  }
+                }
+              ?>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h5 class="product-name">
+            <?php echo $row['item_name'];?>
+          </h5>
+          <h6 class="product-shortdesc">
+            <?php echo $row['item_shortdesc']; ?>
+          </h6>
+          <small class="product-brand">By
+            <?php echo $row['item_brand'];?>
+          </small>
+          <!--Rating of product-->
+          <div class="rating d-flex">
+            <div class="rating_star">
+              <span class="bg-success">4.7 <i class="fas fa-star"></i></span>
+            </div>
+            <a href="#" class="total_rating">20,555 ratings | 1000+ answered questions</a>
+          </div>
+          <!--/Rating of product-->
+          <hr class="m-0">
+          <!--product price-->
+          <table class="product-price-detail">
+            <tr>
+              <td class="item_text">M.R.P :</td>
+              <td class="item-mrp"><strike>₹ <span>
+                    <?php echo $row['item_mrp'];?>
+                  </span></strike></td>
+            </tr>
+            <tr>
+              <td class="item_text">Deal Price :</td>
+              <td class="text-danger item_price "><span>₹
+                  <?php echo $row['item_price'];?>
+                </span> <small>Inclusive of all taxes</small>
+            </tr>
+            <tr>
+              <td class="item_text">You Save :</td>
+              <?php 
+                        $sub=0;
+                        $sub = $row['item_mrp']-$row['item_price'];
+                      ?>
+              <td class="text-danger saving"><span>₹
+                  <?php echo $sub;?>
+                </span></td>
+            </tr>
+          </table>
+
+          <!--product price-->
+
+          <!--data -->
+          <div id="policy">
+            <div class="policy-types">
+              <div class="policy-type">
+                <span class="fas fa-retweet"></span>
+                <a href="">10 Days <br>Replace..</a>
+              </div>
+              <div class="policy-type">
+                <span class="fas fa-truck"></span>
+                <a href="">Free Home<br> Delivery</a>
+              </div>
+              <div class="policy-type">
+                <span class="fas fa-check-double"></span>
+                <a href="">1 Year<br> Warranty</a>
+              </div>
+            </div>
+          </div>
+          <!--data -->
+          <hr>
+          <!--Whishlist-->
+          <div class="wishlist_column">
+            <h6></h6>
+            <div class="product-options d-flex justify-content-around">
+              <div class="product-option">
+                <?php
+                        if(empty($_SESSION['Uname']))
+                        { 
+                      ?>
+                <a href="" class="btn text-danger text-norawp login_again"><i class="far fa-heart"> </i> Save for
+                  Later</a>
+                <?php
+                        }
+                        else
+                        {
+                          $Uid = $_SESSION['Uid'];
+                          $item_id = $row['item_id'];
+                          $r = $mysqli->query("select * from wishlist where item_id = '$item_id' and user_id = $Uid");
+                          $address_query =  $mysqli->query("select pcode from user_address where user_id = $Uid");
+                          $row = $address_query->fetch_assoc();
+                          $res = mysqli_num_rows($r);
+                          $ro = $r->fetch_assoc();
+                          if($res>0)
+                          {
+                      ?>
+
+                <a href="cart.php?r_prod=<?php echo $ro['id']; ?>&item_name=<?php echo $row['item_name'];?>&i_id=<?php echo $item_id ?>"
+                  class="btn text-danger "><i class="fas fa-heart"></i> Remove From Wishlist</a>
+
+                <?php 
+                          }
+                        else 
+                          { 
+                              
+                  ?>
+
+                <a href="cart.php?add_prod=<?php echo $row['item_id']; ?>&item_name=<?php echo $row['item_name'];?>"
+                  class="btn text-danger  text-norawp "><i class="far fa-heart"> </i> Save for Later</a>
+                <?php } }?>
+              </div>
+
+              <div class="product-option">
+                <a href="" class="btn text-primary"><i class="fas fa-share"></i> Share </a>
+              </div>
+              <div class="product-option">
+                <a href="" class="btn text-info"><i class="fas fa-plus"></i> Compare</a>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <!--Whishlist-->
+          <!--Order Details-->
+          <div class="order-details">
+            <small>
+              Delivery by : Mar 20 - Apr 1
+            </small>
+            <small>Sold By <a href="#">Ram Raj</a> (4.5 out of 5 | 18,889 ratings)</small>
+            <?php
+                    if (isset($_SESSION['Uname']))
+                    {
+                    ?>
+            <small><i class="fas fa-map-marker-alt delivery_mark"></i>&nbsp;&nbsp;Deliver to Customer -
+              <?php echo $row['pcode'] ;?>
+            </small>
+            <?php 
+                    }
+                    else 
+                    {
+                    echo '<small><i class="fas fa-map-marker-alt delivery_mark"></i>&nbsp;&nbsp;Deliver to Customer</small>';
+                    }
+                    ?>
+          </div>
+          <!--/Order Details-->
+
+          <div class="row">
+            <!--Color-->
+            <div class="col-6">
+              <div class="color my-3">
+                <div class="laptop_color">
+                  <h6>Color:</h6>
+                  <div class="colors bg-warning"><button class="btn"></button></div>
+                  <div class="colors bg-info"><button class="btn"></button></div>
+                  <div class="colors bg-primary"><button class="btn"></button></div>
+                </div>
+              </div>
+            </div>
+            <!--/Color-->
+
+          </div>
+
+          <!--Processor-->
+          <div class="processor my-3">
+            <h6>PROCESSOR:</h6>
+            <div class="processor_types">
+              <div class="processor_type">
+                <button class="btn">Core i3</button>
+              </div>
+              <div class="processor_type">
+                <button class="btn">Core i5</button>
+              </div>
+              <div class="processor_type">
+                <button class="btn ">Core i7</button>
+              </div>
+            </div>
+          </div>
+          <!--/Processor-->
+
+
+        </div>
+        <!--description-->
+        <div class="col-12 product_desc">
+          <h5>Product Description</h5>
+          <hr>
+          <p>
+            <?php echo $item_desc ;}} ?>
+          </p>
+        </div>
+        <!--/description-->
+      </div>
+    </div>
+
+  </section>
+  <!-- /product -->
+  <!--Top sale-->
+  <? include('top-sale.php');?>
+  <!--/Top sale-->
+</main>
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<?php
+    if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+    {
+    ?>
+<script>
+  swal.fire({
+    title: "<?php echo $_SESSION['msg'];?>",
+    icon: "<?php echo $_SESSION['msg_status'];?>",
+    button: "OK",
+  });
+</script>
+<?php
+    unset($_SESSION['msg']);
+    }
+    ?>
+
+<script>
+  $(document).ready(function () {
+    $(".login_again").on('click', function (e) {
+      e.preventDefault();
+      swal.fire({
+        title: "Please login for wishlisting a product",
+        icon: "info",
+        button: "OK",
+      });
+    });
+  });
+</script>

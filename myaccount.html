@@ -1,0 +1,190 @@
+<?php include('header_index.php');
+	$ret=mysqli_query($mysqli,"SELECT * FROM user WHERE user_id='".$_SESSION['Uid']."'");
+	while($data=mysqli_fetch_array($ret))
+	{
+?>
+<!--/Header-->
+<main>
+	<section id="account">
+		<div class="container">
+			<div class="row">
+			<?php include('profile.php');?>
+			<div class="col-xl-9 col-lg-9 col-md-6 col-sm-12">
+				<div class="details">
+				<!--Form-->	
+					<form action="" id="myform">
+						<div class="title">
+							<h3>Personal Information</h3>
+							<span class="input-group-addon" id="edit" >Edit</span>
+							<span class="input-group-addon" id="cancel" hidden>Cancel</span>
+						</div>
+			
+					<!--Name-->
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<h5>First Name</h5>
+									<input type="text" class="form-control w-100" placeholder="First name" name="fname" id="fname" value="<?php echo htmlentities($data['first_name']); ?>" readonly >
+									<i class="fa fa-exclamation-circle"></i>
+									<small>Error message</small>
+								</div>
+								<div class="col">
+								<h5>Last Name</h5>
+								<div class= "content">
+									<input type="text" class="form-control w-100" placeholder="Last name" name="lname" id="lname" value="<?php echo htmlentities($data['last_name']); ?>" readonly >
+									<input type="submit" class="btn btn-outline-primary" id="update_name" name="update_email" hidden>
+								</div>
+									<i class="fa fa-exclamation-circle"></i>
+									<small>Error message</small>
+								</div>
+							</div>
+						</div>
+					<!--/Name-->
+
+				<!--Gender-->
+				<div class="radio-group"> 
+					<div class="title">
+						<h5>Gender</h5>	
+					</div>
+					<?php $gender=$data['gender'];?>
+					<label class="radio-inline">
+						<input type="radio" name="genders"  value="male" disabled <?php echo ($gender=='male')?'checked':'' ?>  > Male
+                    </label>
+                    <label class="radio-inline">
+						<input type="radio"name="genders" value="female"  disabled <?php echo ($gender=='female')?'checked':'' ?> > Female
+                    </label>
+                    <label class="radio-inline">
+						<input type="radio" name="genders" value="other"  disabled> Other
+					</label>
+					<input type="submit" class="btn btn-outline-primary" id="update_gender" name="update_email" hidden>
+				</div> 
+				<!--/Gender-->
+
+				<!--Email-->
+				<div class="form-group ">
+					<div class="title">
+						<h5>Email Address</h5>
+					</div>
+					<div class="content">
+						<input type="email" class="form-control br-radius-zero" required  name="email" id="email" placeholder="Email ID" value="<?php echo htmlentities($data['email']); ?>"    title="Please enter valid and active Email Id"  maxlength="25" readonly  />
+						
+					</div>
+					<i class="fa fa-exclamation-circle"></i>
+					<small>Error message</small>
+				</div>
+				<!--/Email-->
+
+				<!--Mobno-->
+				<div class="form-group">
+					<div class="title">
+						<h5>Mobile Number</h5>
+					</div>
+					<div class="content">
+						<input type="text" class="form-control br-radius-zero" name="mobno" id="mobile" required placeholder="10-Digit Mobile Number" value="<?php echo htmlentities($data['mobile']); ?>"   onkeypress="return /[0-9]/i.test(event.key)" data-rule="Mobile" minlength="10" maxlength="10" readonly />
+					</div>
+					<i class="fa fa-exclamation-circle"></i>
+					<small>Error message</small>
+				</div> 
+				<div class="form-action ">
+					<button type="button" id="update" class="submit btn btn-primary w-100" hidden>Update</button>
+				</div>
+				<?php ?>
+				<!--/Mobno-->      
+			</form>
+			<?php }  ?>
+		</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--footer-->
+<?php include('footer.php');?>
+  <!--/footer-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <?php
+	 if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+  {
+  ?>
+  <script>
+  swal.fire({
+		title:"<?php echo $_SESSION['msg'];?>",
+		icon:"<?php echo $_SESSION['msg_status'];?>",
+		button:"OK",
+	});
+  </script>
+  <?php
+  unset($_SESSION['msg']);
+  }
+  ?>
+
+
+<script>
+$(document).ready(function(){
+	$('#update').click(function(){
+		var user_id = $('#user_id').val();
+		var fname = $('#fname').val();
+		var lname = $('#lname').val();
+		var mobile = $('#mobile').val();
+		var genval = $('input[type="radio"]:checked');
+		var genders = genval.val();
+
+		$.ajax({
+			url:'user_editdata.php',
+			method:'post',
+			data : {first_name : fname , last_name :lname, user_id : user_id,mobile:mobile,genders : genders},
+			success : function(response)
+			{
+				
+				$('#myform')[0].reset();
+            	 Swal.fire({
+                          icon: 'success',
+                          title: 'Successfully updated...!!!',
+                        }).then((result) => {
+                        if (result.value) {
+                           window.location.href = window.location.href;
+                       }
+                   });
+	
+			}
+		});
+	});
+});
+</script>
+<script>
+	$(document).ready(function(){
+		$("#edit").on('click',function(){
+			//$("input[name='fname']").removeAttr( "readonly" ); 
+			$(':input').removeAttr('readonly');
+			$("input[name='email']").attr( "readonly",true ); 
+			$("input[name='search']").attr( "disabled",false ); 
+			$("input[name='search']").attr( "readonly",false ); 
+			$("#edit").attr( "hidden",true ); 
+			$("#cancel").attr( "hidden",false ); 
+			$(':input').removeAttr('disabled');
+			$('.submit').removeAttr('hidden');
+			});
+		
+		$("#cancel").on('click',function(){
+			//$("input[name='fname']").removeAttr( "readonly" ); 
+			$('#myform')[0].reset();
+			$(':input').attr('readonly',true);	
+			$(':input').attr('disabled',true);
+			$("input[name='email']").attr( "readonly",true ); 
+			$("input[name='search']").attr( "disabled",false ); 
+			$("input[name='search']").attr( "readonly",false ); 
+			$("button[name='searchbtn']").attr( "disabled",false ); 
+			$("button[name='searchbtn']").attr( "readonly",false ); 
+			$("#cancel").attr( "hidden",true );
+			$("#edit").attr( "hidden",false );  
+			$('.submit').attr('hidden',true);
+			$("#footer_email_btn").attr( "disabled",false ); 
+			$("#footer_email_btn").attr( "readonly",false ); 
+			$("#footer_email").attr( "disabled",false ); 
+			$("#footer_email").attr( "readonly",false );
+			});
+		});
+	
+</script>
+

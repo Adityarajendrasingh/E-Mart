@@ -1,0 +1,187 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Mart</title>
+  <?php include('links.php'); ?>
+</head>
+
+<?php include('header_index.php');?>
+<?php include('header_navigation.php') ?>
+<!--/Header-->
+
+<main>
+  <!--Banner-->
+
+  <section id="index_banner">
+    <div class="owl-carousel owl-theme mx-auto">
+      <div class="banner">
+        <img src="images/banner1.jpg" alt="banner1" />
+      </div>
+      <div class="items mx-auto">
+        <img src="images/banner2.jpg" alt="banner2" />
+      </div>
+      <div class="items mx-auto">
+        <img src="images/banner3.png" alt="banner3" />
+      </div>
+      <div class="items mx-auto">
+        <img src="images/banner5.png" alt="banner4" />
+      </div>
+      <div class="items">
+        <img src="images/banner6.jpg" alt="banner5" />
+      </div>
+    </div>
+  </section>
+  <!--/Banner-->
+
+  <!--Top-sale-->
+  <?php include('top-sale.php'); ?>
+  <!--/Top-sale-->
+
+  <!--special-price-->
+  <?php include('special-price.php');?>
+  <!--/special-price-->
+
+  <!--New Brands-->
+  <?php include('new-brand.php'); ?>
+  <!--/New Brands-->
+
+  <!--Comment Section-->
+  <?php include('comment_section.php'); ?>
+  <!--Comment Section-->
+
+  <!-- brand_partner -->
+  <?php include('brand_partner.php'); ?>
+  <!-- brand_partner -->
+
+  <!--Latest blog-->
+  <?php include('blog_Section.php'); ?>
+  <!--/Latest blog-->
+
+  <!-- button to top -->
+  <?php include('scroll_top.php');?>
+
+  <!-- /button to top -->
+</main>
+
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<?php
+      if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+  {
+  ?>
+<script>
+  swal.fire({
+    title: "<?php echo $_SESSION['msg'];?>",
+    icon: "<?php echo $_SESSION['msg_status'];?>",
+    button: "OK",
+  });
+</script>
+<?php
+  unset($_SESSION['msg']);
+  }
+  ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+  $(document).ready(function () {
+    $(".login_again").on("click", function (e) {
+      e.preventDefault();
+
+      Swal.fire({
+        title: "Please Login to get access of your wishlist",
+        icon: "info",
+        button: "OK",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          content: '<a href="#" class="px-3  border-right border-left text-dark" data-toggle="modal" data-target="#exampleModalCenter"> Login</a>';
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $("#user_register").click(function () {
+      var fname = $("#fname").val().trim();
+      var lname = $("#lname").val().trim();
+      var mobileno = $("#mobno").val().trim();
+      var email = $("input[name=uemail]").val().trim();
+      var password = $("input[name=upassword]").val().trim();
+      var $option = $("input[name=genders]:checked"); // $option is the jQuery wrapped HTML element
+      var my = $option.val();
+    });
+  });
+</script>
+<script src="./js/index.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#sendOtpBtn').on('click',function(){
+      send_otp();
+    });
+    $('#verifyOtpBtn').on('click',function(){
+      verify_otp();
+    });
+  });
+
+</script>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    "use strict";
+    window.addEventListener(
+      "load",
+      function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName("needs-validation");
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              } else {
+                var fname = $("#fname").val().trim();
+                var lname = $("#lname").val().trim();
+                var mobileno = $("#mobno").val().trim();
+                var email = $("input[name=uemail]").val().trim();
+                var password = $("input[name=upassword]").val().trim();
+                var $option = $("input[name=genders]:checked"); // $option is the jQuery wrapped HTML element
+                var my = $option.val();
+
+                $.ajax({
+                  url: "usersignup.php",
+                  type: "post",
+                  data: {
+                    fname: fname,
+                    lname: lname,
+                    mobileno: mobileno,
+                    email: email,
+                    password: password,
+                    gen: my,
+                  },
+                  success: function (result) {
+                    window.location.href = "user_login.html";
+                  },
+                });
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      },
+      false
+    );
+  })();
+</script>
+
+
+</html>

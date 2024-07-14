@@ -1,0 +1,124 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Details | E-Mart.com</title>
+    <?php include('links.php'); ?>
+</head>
+
+
+<?php include('header_index.php');?>
+<!--/Header-->
+<main>
+    <section id="account">
+        <div class="container">
+            <div class="row">
+                <?php include('profile.php');?>
+                <div class="col-xl-9 col-lg-9 col-md-6 col-sm-12">
+                    <div class="details">
+                        <form action="POST">
+                            <!--Cardno valid thru-->
+                            <div class="form-group">
+                                <div class="row">
+                                    <!--Cardno-->
+                                    <div class="col">
+                                        <h5>Enter Card Number</h5>
+                                        <input type="text" class="form-control w-100" placeholder="Enter Card Number"
+                                            name="cno">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <small>Error message</small>
+                                    </div>
+                                    <!--/Cardno-->
+
+                                    <!--Valid-->
+                                    <div class="col">
+                                        <h5>Valid thru</h5>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control"
+                                                aria-label="Text input with dropdown button" placeholder="Valid thru"
+                                                name="mm">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">MM</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">1</a>
+                                                    <a class="dropdown-item" href="#">2</a>
+                                                    <a class="dropdown-item" href="#">3</a>
+                                                    <a class="dropdown-item" href="#">4</a>
+                                                    <a class="dropdown-item" href="#">5</a>
+                                                    <a class="dropdown-item" href="#">6</a>
+                                                    <a class="dropdown-item" href="#">7</a>
+                                                    <a class="dropdown-item" href="#">8</a>
+                                                    <a class="dropdown-item" href="#">9</a>
+                                                    <a class="dropdown-item" href="#">10</a>
+                                                    <a class="dropdown-item" href="#">11</a>
+                                                    <a class="dropdown-item" href="#">12</a>
+                                                </div>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                    data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">YY</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">2021</a>
+                                                    <a class="dropdown-item" href="#">2022</a>
+                                                    <a class="dropdown-item" href="#">2023</a>
+                                                    <a class="dropdown-item" href="#">2024</a>
+                                                    <a class="dropdown-item" href="#">2025</a>
+                                                    <a class="dropdown-item" href="#">2026</a>
+                                                    <a class="dropdown-item" href="#">2027</a>
+                                                    <a class="dropdown-item" href="#">2028</a>
+                                                    <a class="dropdown-item" href="#">2029</a>
+                                                    <a class="dropdown-item" href="#">2030</a>
+                                                    <a class="dropdown-item" href="#">2031</a>
+                                                    <a class="dropdown-item" href="#">2032</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <small>Error message</small>
+                                    </div>
+                                    <!--/Valid-->
+                                </div>
+                            </div>
+                            <!--/Cardno Valid date-->
+
+                            <!--nameoncard and future name-->
+                            <div class="form-group">
+                                <div class="row">
+                                    <!--nameoncard-->
+                                    <div class="col">
+                                        <h5>Name on card</h5>
+                                        <input type="text" class="form-control" placeholder="Name on card" name="cname">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <small>Error message</small>
+                                    </div>
+                                    <!--/nameoncard-->
+
+                                    <!--future name-->
+                                    <div class="col">
+                                        <h5>Name this Card for Future use</h5>
+                                        <input type="text" class="form-control" placeholder="Name on card"
+                                            name="cfname">
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <small>Error message</small>
+                                    </div>
+                                    <!--future name-->
+                                </div>
+                            </div>
+                            <!--/nameoncard and future name-->
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->

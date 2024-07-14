@@ -1,0 +1,152 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PanCard Details | E-Mart.com</title>
+	<?php include('links.php'); ?>
+</head>
+
+
+<?php include('header.php');?>
+<!--/Header-->
+<main>
+    <section id="account">
+        <div class="container">
+            <div class="row">
+                 <?php include('profile.php');?>
+                <div class="col-xl-9 col-lg-9 col-md-6 col-sm-12">
+                    <div class="details">
+                        <form action="POST">
+                            <!--Pancard No.-->
+                            <div class="title">
+                                <h3>Pan Card Information</h3>
+                            </div>
+                            <div class="form-group">
+                                <h5>PAN Card Number</h5>
+                                <input type="text" class="form-control" placeholder="PAN Card Number" name="pno" id="pno">
+                                <i class="fa fa-exclamation-circle"></i>
+                                <small>Error message</small>
+                            </div>
+                            <!--/Pancard No.-->
+
+                            <!--Full name.-->
+                            <div class="form-group">
+                                <h5>Full Name</h5>
+                                <input type="text" class="form-control br-radius-zero" name="fname" id="fname" required placeholder="Full Name"  required  />
+                                <i class="fa fa-exclamation-circle"></i>
+                                <small>Error message</small>
+                            </div>
+                            <!--/Full name.-->
+
+                            <!--Pan Card Image-->
+                            <div class="form-group">
+                                <label for="exampleFormControlFile1" class="mb-0"><h5>Upload PAN Card</h5></label>
+                                <input type="file" class="form-control-file br-radius-zero" id="exampleFormControlFile1">
+                            </div>
+                            <!--/Pan Card Image-->
+
+                            <!--check btn-->    
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input br-radius-zero" id="exampleCheck1">
+                                <label class="form-check-label term-con" for="exampleCheck1">I do hereby declare that PAN furnished/stated above is correct and belongs to me, registered as an account holder with www.emart.com. I further declare that I shall solely be held responsible for the consequences, in case of any false PAN declaration.
+                                </label>
+                            </div> 
+                            <div class="form-action ">
+                                <button type="button" id="submit_paninfo" class="submit btn btn-info w-100">Submit</button>
+                            </div>
+                            <!--/check btn-->        
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </section>
+</main>
+
+<!--footer-->
+  <?php include('footer.php');?>
+  <!--/footer-->
+<script>
+    $(document).ready(function(){
+        $("#submit_paninfo").on('click',function(){
+            var fname = $("#fname").val().trim();
+            var pno = $("#pno").val().trim();
+            var pimage = $("#exampleFormControlFile1").val().trim();
+            if(fname!="" && pno!="")
+            {
+                $.ajax({
+                    url: 'add_pancard.php',
+                    type: "POST",
+                    data: {fname: fname,pno: pno,pimage : pimage},
+                    success:function(s)
+                    {
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'Pancard Information added successfully...!!!',
+                        }).then((result) => {
+                        if (result.value) {
+                            window.location.href = "paninfo.html";
+                        }
+                         });
+                    },
+                    Error:function(s)
+                    {
+                        alert(s);
+
+                    }
+                });
+            }
+        });
+    });
+</script>
+<script>
+    //  function toggle() 
+    //  {
+    //         // var elm = document.getElementById('exampleCheck1');
+    //         // if (checked != elm.checked) {
+    //         //     elm.click();
+    //         //     $("#submit_paninfo").attr( "disabled",false); 
+    //         // }
+    //         // else
+    //         // {
+    //         //     $("#submit_paninfo").attr( "disabled",true);
+    //         // }
+    //         if($("#exampleCheck1").attr("checked", true))
+    //         {
+    //             $("#submit_paninfo").attr( "disabled",false ); 
+    //         }
+    //         else if ($("#exampleCheck1").attr("checked",false))
+    //         {
+    //             $("#submit_paninfo").attr( "disabled",true ); 
+    //         }
+    //         else
+    //         {
+    //             $("#submit_paninfo").attr( "disabled",true );
+    //         }
+    // }
+</script>
+<script>
+        // var fname = $("#fname").val().trim();
+        // var pno = $("#pno").val().trim();
+        // if (fname=='')
+        // {
+        //     alert("Please enter your full name");
+        // }
+        // else if(pno=='')
+        // {
+        //     alert("Please enter your Pan number");
+        // }
+        // else if($("#exampleCheck1").attr("checked",false))
+        // {
+        //     alert("Please agree the t&c");
+        // }
+        // function toggle(checked) {
+        //     var elm = document.getElementById('exampleCheck1');
+        //     if (checked != elm.checked) {
+        //         elm.click();
+        //     }
+        // }
+</script>
+    

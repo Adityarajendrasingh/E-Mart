@@ -1,0 +1,117 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Order | E-Mart.com</title>
+	<?php
+        include('links.php'); 
+        include('dbconnection.php');
+    ?>
+</head>
+<?php include('header_index.php');?>
+<!--/Header-->
+<!--Main-->
+    <section id="order">
+        <div class="container order_outerbox">
+            <?php
+                $result = $mysqli->query("SELECT DISTINCT product.*,order_checkout.*,order_detail.*,order_status.id,order_status.status as order_status,laptop_brand.id,laptop_brand.brand_name as item_brand, 
+                order_detail.id as order_product_id FROM product,order_checkout,order_detail,order_status,laptop_brand WHERE product.item_brand = laptop_brand.id AND order_checkout.id = order_detail.order_id
+                AND order_detail.item_id = product.item_id AND order_checkout.user_id = '".$_SESSION['Uid']."' AND order_checkout.order_status = order_status.id AND order_detail.order_id = order_checkout.id") or die($mysqli->error);
+                if(mysqli_num_rows($result) < 1 )
+                {
+            ?>
+            <div class="noorder text-center">
+                <img src="images/noorderyet.PNG" class="img-fluid" alt="">
+                <h2>no order found!</h2>
+                <h6>Look like you haven't made your order yet.</h6>
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
+            <?php 
+                }
+                else
+                {
+                    while($row = mysqli_fetch_assoc($result))
+                    {
+                        $order_product_id = $row['order_product_id'];
+                
+            ?>
+            <a href ="order_detail.html?item_id=<?php echo $row['item_id']?>&order_product_id=<?php echo $order_product_id?> " class="text-decoration-none">
+            <div class="order-box">
+                <!--Product order summary--> 
+                <div class="row ">
+                    <!--Product img and info-->
+                    <div class="col order-box-img">
+                        <img src="images/<?php echo $row['item_images'] ?>" alt="order-image.PNG">
+                    </div>
+                    <div class="col order-product_name d-flex flex-column">
+                        <span><?php echo $row['item_name']?></span>
+                        <small>Seller : <?php echo $row['item_brand'] ?> </small>
+                        <small>QTY : <?php echo $row['item_qty'] ?></small>
+                        <h5>₹ <?php echo $row['item_price'] ?></h5>
+                    </div>
+                    <!--Product info-->
+                    <!--/Product img and info-->
+                    <!--Product delivery details-->
+                    <div class="col order-delivery_status text-center">
+                        <?php
+                            $r=mt_rand(3,10);
+                            $d=strtotime("+$r Days");
+                        ?>
+                            
+                        <?php
+                        $status = trim($row['order_status']);
+                        if($status=='Complete')
+                        {?>
+                            <span class="text-success"><i class="fas fa-circle"></i> Delivered on<br> <?php echo $row['order_deliverydate'];?></span>
+                        <?php
+                            }   
+                            else if($status=='Cancelled')
+                            {                   
+                        ?>
+                        <span class="text-danger"><i class="fas fa-times"></i> Cancelled</span>
+                        <?php 
+                            }
+                            else
+                            {
+                        ?>
+                        <span>Delivery by<br> <?php echo $row['order_deliverydate'];?></span>
+                        <?php } ?>
+                    </div>
+                        <!--/Product delivery details-->
+                </div>
+            </div>
+               
+                <!--Product order summary-->
+            </a>
+       
+            <br>
+            <br>
+            <?php } }?>
+        </div>
+       
+    </section>
+    <?php include('scroll_top.php') ?>
+<!--/Main-->
+
+<!--footer-->
+<?php include('footer.php');?>
+<!--/footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<?php
+   if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+{
+?>
+<script>
+swal.fire({
+      title:"<?php echo $_SESSION['msg'];?>",
+      text:"<?php echo $_SESSION['msg_text'];?>",
+      icon:"<?php echo $_SESSION['msg_status'];?>",
+      button:"OK",
+  });
+</script>
+<?php
+unset($_SESSION['msg']);
+}
+?>

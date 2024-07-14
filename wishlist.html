@@ -1,0 +1,119 @@
+<?php 
+include('dbconnection.php');
+?>
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist | E-Mart.com</title>
+  <?php include('links.php'); ?>
+  <style>
+    .itemname a {
+      color: rgb(51, 51, 51);
+    }
+
+    .itemname a:hover {
+      color: rgb(0, 170, 255);
+    }
+  </style>
+</head>
+
+
+
+<body onload="fetch_data()">
+
+  <?php include('header_index.php'); ?>
+  <main>
+
+    <div class="container-fluid">
+      <div class="" id="all_data">
+
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
+<!--footer-->
+<?php include('footer.php') ?>
+
+<!--/footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<?php
+    if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+    {
+?>
+<script>
+  swal.fire({
+    title: "<?php echo $_SESSION['msg'];?>",
+    icon: "<?php echo $_SESSION['msg_status'];?>",
+    button: "OK",
+  });
+</script>
+<?php
+    unset($_SESSION['msg']);
+    }
+?>
+<script type="text/javascript">
+  //display
+  function fetch_data() {
+    var operation = "fetching_the _data";
+    $.ajax({
+      url: "wishlist_action.php",
+      type: 'post',
+      data: { operation: operation },
+      success: function (s) {
+        $("#all_data").html(s);
+      },
+      Error: function (s) {
+        alert('failed to show');
+
+      }
+
+    });
+
+  }
+</script>
+<script>
+  $(document).ready(function () {
+    $(document).on('click', '.delete', function (e) {
+      e.preventDefault();
+      var id = $(this).attr("id");
+      console.log(id);
+      Swal.fire({
+        title: 'Are you sure you want to remove this item from your wishlist?',
+
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "wishlist_action.php",
+            type: "post",
+            data: { id: id },
+            success: function (s) {
+              fetch_data();
+              Swal.fire(
+                'Deleted!',
+                '',
+                'success'
+              ).then((result) => {
+
+                window.location.href = window.location.href;
+              });
+            }
+          })
+        }
+      })
+
+    });
+
+
+  });
+</script>

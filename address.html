@@ -1,0 +1,186 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address | E-Mart.com</title>
+	<?php include('links.php'); ?>
+</head>
+<?php include('header_index.php');?>
+<!--/Header-->
+<main>
+    <section id="account">
+        <div class="container">
+          <div class="row">
+            <?php
+                $result = $mysqli->query("select * from user_address where user_id = '".$_SESSION['Uid']."'") or die($mysqli->error);
+                $num = mysqli_num_rows($result);
+                if($num < 1)
+                {
+                  include('profile.php');
+             ?>
+            <!--No address-->
+            <div class="col-xl-lg col-lg-9 col-md-6 col-sm-12 no-address">
+              <img src="images/noaddress.PNG" alt="" class="img-fluid">
+              <h2>No Addresses found in your account!</h2>
+              <h6>Add a delivery address.</h6>
+              <a href="add_address.php" class="btn btn-primary" id="add_address">add address</a>
+            </div>
+            <!--No address-->
+            <?php 
+                } 
+                    else 
+                    {  
+                        include('profile.php');
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            include('addressform.php');
+                        }
+                        
+                    } 
+            ?>
+          </div>
+        </div>    
+    </section>
+</main>
+<!--footer-->
+<?php include('footer.php');?>
+  
+<!--/footer-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <?php
+     if(isset($_SESSION['msg']) && $_SESSION['msg']!='')
+  {
+  ?>
+  <script>
+  swal.fire({
+        title:"<?php echo $_SESSION['msg'];?>",
+        icon:"<?php echo $_SESSION['msg_status'];?>",
+        button:"OK",
+    });
+  </script>
+  <?php
+  unset($_SESSION['msg']);
+  }
+  ?>
+
+  <script type="text/javascript">
+    function fetch_data()
+    {
+        var operation = "fetching_the _data";
+        $.ajax({
+            url:"address_retrieving.php",
+            type:'post',
+            data:{operation:operation},
+            success:function(s)
+            {
+                $("#all_data").html(s);
+            },
+            Error:function(s)
+            {
+                    alert('failed to show');
+
+            }
+
+        });
+
+    }
+</script>
+  <script type="text/javascript">
+      $(document).ready(function(){
+        $(document).on('click','#add_address',function(){
+          $.ajax({
+                url:"address_retrieving.php",
+                type:'post',
+                data:{ id : id },
+                success:function(s)
+                {
+                    fetch_data();
+
+                },
+                Error:function(s)
+                {
+                    alert('failed to insert');
+
+                }
+        });
+      });
+    });
+  </script>
+  <script>
+    $(document).ready(function(){
+      $("#edit").on('click',function(){
+        //$("input[name='fname']").removeAttr( "readonly" ); 
+        $(':input').removeAttr('readonly');
+        $("input[name='fname']").attr( "readonly",true ); 
+        $("#edit").attr( "hidden",true ); 
+        $("#cancel").attr( "hidden",false ); 
+        $(':input').removeAttr('disabled');
+        $('.submit').removeAttr('hidden');
+        });
+      
+      $("#cancel").on('click',function(){
+        $('#fupForm')[0].reset();
+        $(':input').attr('readonly',true);
+        $("#edit").attr( "hidden",false ); 
+        $("#cancel").attr( "hidden",true ); 
+      	$(':input').attr('disabled',true);
+        $('.submit').attr('hidden',true);
+        $("input[name='search']").attr( "disabled",false ); 
+			  $("input[name='search']").attr( "readonly",false ); 
+			  $("button[name='searchbtn']").attr( "disabled",false ); 
+			  $("button[name='searchbtn']").attr( "readonly",false ); 
+        $("#footer_email_btn").attr( "disabled",false ); 
+        $("#footer_email_btn").attr( "readonly",false ); 
+        $("#footer_email").attr( "disabled",false ); 
+        $("#footer_email").attr( "readonly",false );
+        });
+      });
+    
+  </script>
+<!--Address-->
+<!--Address-->
+<script>
+  $(document).ready(function(){
+    $("#update").click(function(){
+      var pcode = $('#pcode').val();
+      var locality = $('#locality').val();
+      var address =$('#addr').val();
+      var city = $('#city').val();
+      var state = $('#state').val();
+      var landmark = $('#landmark').val();
+      var mobile2 = $('#mobile2').val();
+      var $option = $('input[type="radio"]:checked'); // $option is the jQuery wrapped HTML element
+      var myValue = $option.val();
+      //alert(myValue);
+      //var addrtype = $('#addrtype').val();
+      if(pcode!="" && locality!="" && city!="" )
+      {
+        $.ajax({
+          url: 'address_update.php',
+          type: "POST",
+          data: { pcode: pcode,locality: locality,address : address, landmark: landmark,city: city,state : state,mobile2 : mobile2,addrtype : myValue},
+           success:function(result)
+           {
+           // window.location.href = window.location.href;
+             $('#fupForm')[0].reset();
+             Swal.fire({
+                        icon: 'success',
+                        title: 'Address Updated...!!!',
+                      }).then((result) => {
+                      if (result.value) {
+                        window.location.href = "address.html";
+                     }
+                 });
+          }
+        });
+
+      }
+
+    });
+  });
+</script>
+<!--/Address-->
+<!--/Address-->
+    

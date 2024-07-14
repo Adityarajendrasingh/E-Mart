@@ -1,0 +1,201 @@
+<!--Header-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Address | E-Mart.com</title>
+	  <?php 
+      include('links.php');
+      include('dbconnection.php');
+      include('header_index.php');
+    ?>
+</head>
+<!--/Header-->
+<main onload="fetch_data()">
+  <section id="account">
+    <div class="container">
+      <div id="all_data">
+      </div>
+      <div class="row">
+        <?php 
+            include('profile.php');  
+        ?>
+        <div class="col-xl-9 col-lg-9 col-md-6 col-sm-12">
+          <div class="details">
+            <!--Name mobile-->
+            <div class="form-group">
+              <div class="title">
+                <h3>Manage Address</h3>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <h5>Name</h5>
+                  <input type="text" class="form-control w-100" placeholder="Name" name="fname"  value="<?php echo $_SESSION['Uname']; ?> <?php echo $_SESSION['Lname']; ?>">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <small>Error message</small>
+                </div>
+                <div class="col">
+                  <h5>Mobile Number</h5>
+                  <input type="number" class="form-control br-radius-zero" name="mobno" id="mobile" required placeholder="10-Digit Mobile Number"  onkeypress="return /[0-9]/i.test(event.key)" row-rule="Mobile" minlength="10" maxlength="10" />
+                  <i class="fa fa-exclamation-circle"></i>
+                  <small>Error message</small>
+                </div>
+              </div>
+            </div>
+            <!--/Name mobile-->
+
+            <!--Pincode locality-->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                    <h5>Pincode</h5>
+                    <input type="text" class="form-control w-100" placeholder="First name" name="pcode" id="pcode"  >
+                    <i class="fa fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="col">
+                    <h5>Locality</h5>
+                    <input type="text" class="form-control w-100" placeholder="Locality" name="locality" id="locality">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+              </div>
+            </div>
+            <!--/Pincode locality-->
+
+            <!--address-->
+            <div class="form-group">
+                <h5>Address</h5>
+                <textarea name="" id="" cols="" rows="5" class="px-2 py-1 w-100 form-control " placeholder="Address(Area and Street)" name="address" id="address"></textarea>
+            </div>
+            <!--/address-->
+
+            <!--city state-->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                    <h5>City/District/Town</h5>
+                    <input type="text" class="form-control w-100" placeholder="City/District/Town" name="city" id="city" >
+                    <i class="fa fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <div class="col">
+                    <label for="inputState" class="state_label mb-0"><h5>State</h5></label>
+                    <select id="inputState" class="form-control br-radius-zero state_list">
+                    <option selected>--Select State--</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                    <option>...</option>
+                    </select>
+                    <i class="fa fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+              </div>
+            </div>
+            <!--/city state-->
+            <!--landmark mobile2-->
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                    <h5>Landmark(Optional)</h5>
+                    <input type="text" class="form-control w-100" placeholder="Landmark(Optional)" name="landmark" >
+                    <i class="fa fa-exclamation-circle" id="landmark"></i>
+                      <small>Error message</small>
+                </div>
+                <div class="col">
+                    <h5>Alternative No.(Optional)</h5>
+                    <input type="text" class="form-control w-100" placeholder="Alternative Mobile Number(Optional)" name="mob2" id="mobile2">
+                    <i class="fa fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+              </div>
+            </div>
+            <!--/landmark mobile2-->
+
+            <!--addr type-->
+
+            <div class="radio-group"> 
+              <div class="title">
+                <h5>Address Type</h5>
+              </div>               
+              <label class="radio-inline pr-2 ">
+                <input type="radio" name="addtype" value="home" required > Home
+              </label>
+              <label class="radio-inline pr-4">
+                <input type="radio"name="addtype"  value="work">Work
+              </label>
+            </div>
+            <div class="form-action">
+              <button type="button" class="btn btn-info w-100" id="submit">ADD</button> 
+            </div> 
+            <!--/addr type-->          
+                      
+          </div>
+        </div>
+      </div>
+    </div>    
+  </section>
+</main>
+
+
+<!--footer-->
+  <?php include('scriptlinks.php');?>
+  <!--/footer-->
+<script type="text/javascript">
+  //display
+  function fetch_data()
+  {
+    var operation = "fetching_the _data";
+    $.ajax({
+      url:"address_retrieving.php",
+      type:'post',
+      data:{operation:operation},
+      success:function(s)
+      {
+        $("#all_data").html(s);
+      },
+      Error:function(s)
+      {
+          alert('failed to show');
+
+      }
+    });
+  }
+</script>
+<script type="text/javascript">
+
+  //ADD
+   $(document).ready(function(){
+    $("#submit").click(function(){
+    
+        var pcode = $('#pcode').val();
+        var locality = $('#locality').val();
+        var address = $('#address').val();
+        var city = $('#city').val();
+        var landmark = $('#landmark').val();
+        var mobile2 = $('#mobile2').val();
+        var addrtype = $('#addrtype').val();
+        $.ajax({
+            url:"ajax.php",
+            type:'post',
+            data:{ pcode : pcode , locality : locality, address : address , city : city,
+                  landmark : landmark, mobile2 : mobile2, addrtype : addrtype },
+            success:function(s)
+            {
+             
+            },
+            Error:function(s)
+            {
+              alert('failed to insert');
+
+            }    
+          });
+      });
+   });
+  
+</script>
