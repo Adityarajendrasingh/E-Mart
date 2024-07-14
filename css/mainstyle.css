@@ -1,0 +1,1417 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Raleway&family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat+Alternates:wght@300;400&family=Open+Sans&family=Poppins&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+a,a:hover{
+    text-decoration: none;
+}
+.navbar{
+/*background-color:rgb(0, 170, 255);*/
+font-size: 17px;
+}
+
+.nav-item a{
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+}
+.navbar ul li{
+    font-size:26px;
+}
+.nav-item a{
+    font-size:18px;
+}
+button{
+    color: black;
+}
+/*BreadCrumb*/
+ .breadcrumb-item a {
+    color: #494949;
+    font-family: 'Baloo Thambi 2', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+ .breadcrumb-item a:hover{
+	 color:rgb(0, 170, 255);
+ }
+/*BreadCrumb*/
+/* header */
+.header_detail {
+    margin: 0 15px;
+}
+.sub-header a,.address p,.login_header a{
+    font-family: 'Poppins',serif;
+    font-size: 1.1rem;
+    color:#222222;
+    padding: 0 15px;
+}
+.sub-header a:hover,.login_header a:hover{
+    font-weight: 400;
+    color: #05d9ff;
+}
+.user_dropdown a{
+    color: rgb(39, 39, 39);
+}
+.user_dropdown_menu i {
+    font-size:16px;
+    margin-right: 7px;
+    color:#0d6efd
+}
+/* header */
+.error{
+	background-color:#F2DEDE;
+	color:red;
+	padding:10px;
+	width:95%;
+	border-radius:5px;
+	margin-top:10px;
+}
+.form {
+    margin:12px;
+}
+.form-group input,textarea{
+    font-size:16px;
+    background:white; 
+    border:2px solid #f0f0f0;
+    border-radius: 4px;
+    font-family: 'Poppins',sans-serif;
+}
+.form-group .login_header h6{
+    display: inline;
+    font-family:'Rubik',sans-serif;
+}
+.form-group h5,.radio-group h5,.state_label h5{
+    color: rgb(105, 105, 105);
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 0;
+}
+.form-group h4{
+    font-family: 'Baloo Thambi 2', cursive;
+    font-size:26px;
+}
+.form-group .login_header a{
+    display: inline;
+    margin: 0;
+}
+.form-group i{
+    position: absolute;
+    top:34px;
+    right: 10px;
+    visibility: hidden;
+}
+.form-group small{
+    position: absolute;
+    visibility: hidden;
+    bottom: 0;
+}
+
+.form-group.success input{
+    border-color: #2ecc71;
+}
+.form-group.error input{
+ border-color:#e74c3c;
+}
+.form-group.success i.fa-check-circle{
+    color: #2ecc71;
+    visibility: visible;
+}
+.form-group.error i.fa-exclamation-circle{
+    color:#e74c3c ;
+    visibility: visible;
+}
+.form-group.error small{
+    color:#e74c3c;
+    visibility: visible;
+}
+.email_id button{
+    font-family:'Raleway', sans-serif;
+}
+.btn1{
+    display: block;
+    background:#16b5b0;
+    width: 100%;
+    padding:10px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+ 
+}
+.login-submit-button button{
+    font-family: 'Baloo',sans-serif;
+    font-weight: 600;
+}
+.register-submit-buttton input{
+    font-family: 'Baloo Thambi 2', cursive;
+    letter-spacing: .5px;
+
+}
+.existing-user a{
+    font-family: 'Baloo Thambi 2', cursive;
+    letter-spacing: .5px;
+}
+.existing-user a:hover{
+    text-decoration:none;
+    color: #FFFFFF;
+}
+.login_header h6{
+    display: inline;
+    font-family:'Rubik',sans-serif;
+    font-size: 16px;
+}
+.login_header a{
+    display: inline;
+    margin: 0;
+}
+.register_header h6{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color:#252525;
+}
+.invalid-feedback {
+    font-size:18px;
+}
+.swal2-title span{
+    font-family: 'Rubik',sans-serif;
+    font-size: 32px;
+}
+.swal2-confirm,.swal2-cancel a{
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+/* language */
+.language-dropdown a {
+    font-family: 'Poppins',serif;
+    font-size: 1.1rem;
+    color:#222222;
+}
+.language-dropdown a:hover{
+    color: #05d9ff;
+}
+/* end of language */
+/*user login after*/
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+
+/* show password */
+.showpass{
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+    
+}
+.showpwd{
+    width: 6%;
+    height: 23px;
+}
+.showpass_text{
+    font-family: 'Open Sans',sans-serif;
+    font-size: 1rem;
+    margin-left: 6px;
+ 
+}
+/* show password */
+/*user login after*/
+/* header */
+.header_detail {
+    margin: 0 15px;
+}
+.user_dropdown a{
+    color: rgb(39, 39, 39);
+}
+.user_dropdown_menu i {
+    font-size:16px;
+    margin-right: 7px;
+}
+/*End of header */
+/* wishlist */
+.wishlist span{
+    background-color: #d6d6d6;
+}
+/* end of wishlist */
+/* cart */
+.page-name{
+    font-family: 'Baloo Thambi 2', cursive;
+    font-size: 26px;
+}
+.beforelo-cart img{
+    max-width: 355px;
+    margin: 20px;
+}
+.beforelo-cart h2{
+    font-family: 'Baloo Thambi 2', cursive;
+    text-transform: capitalize;
+    
+}
+.beforelo-cart h6{
+    font-family: 'Rubik', sans-serif;
+    color:rgba(0,0,0,.5)!important;
+}
+.beforelo-cart a{
+    margin: 15px 0px;
+    padding:8px 30px;
+    font-family: 'Lato', sans-serif; 
+    background: #fb641b;
+    color:#fff;
+    font-size: 1.2rem;
+}
+.beforelo-empty-cart{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.empty-cart{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+.empty-cart img{
+    max-width:780px;
+    margin: 15px;
+}
+.empty-cart h2{
+    font-family: 'Poppins', cursive;
+    text-transform: capitalize;
+}
+.empty-cart h6{
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+    color:rgba(0,0,0,.5)!important;
+}
+.empty-cart a{
+    margin: 12px 0px;
+    padding:8px 30px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.2rem;
+}
+.empty-cart a:hover{
+    color: #000;
+}
+.my-cart{
+    border-top: 1px solid #dee2e6!important;
+    padding:18px 0px;
+}
+/* .my-cart-productdetail span{
+    font-family: 'Lato',sans-serif;
+    color: #363636;
+} */
+.user_cart{
+    background-color: rgb(6, 57, 112);
+}
+/* banner */
+/* head_logo */
+.head_logo{
+    background-color:#74e8fc;
+}
+.banner img{
+    width: 100%;
+    overflow: hidden;
+    height: fit-content;
+    border-radius: 10px 0px 0px 10px;
+}
+.logo-signup_login img{
+    width: 300px;
+}
+/* End of banner */
+/* logo */
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    text-align: center;
+    margin: 7px 0px;
+}
+.logo img{
+    width: 92px;
+}
+.logo span{
+    font-size: 1.5rem;
+    font-family: 'Poppins',sans-serif;
+    margin-left: 6px;
+    font-weight: 600;
+}
+.main_logo img{
+    font-size: large;
+    font-weight: 600;
+    color: rgb(39, 39, 39);
+    width: 60px;
+}
+.right-side{
+    padding:0px 10px 10px 10px;
+}
+/* end of logo */
+/* contact */
+.contact a{
+    font-size: 18px;
+    font-family: 'Rubik',sans-serif;
+    color: #222222;
+    font-weight: 600;
+}
+/* contact */
+/*top sale*/
+.box{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow:hidden;
+    width:250px;
+    height:400px;
+    margin:0 auto;
+}
+.box1{
+    width: 270px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow:hidden;
+}
+
+.slider-img{
+    height:200px;
+    position: relative;
+    overflow: hidden;
+}
+.detail-box{
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px 20px;
+}
+.type{
+    flex-direction: column;
+    font-size: 20px;
+}
+.type a{
+    margin: 5px 0px;
+    letter-spacing: .5px;
+}
+.type a:hover{
+    text-decoration: none;
+}
+.type span{
+    color: rgba(26,26,26,.5);
+}
+.brand-name{
+    font-family: 'Rubik',sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #252525;
+}
+.brand-name:hover{
+    text-decoration: none;
+    color: #222222;
+}
+.item-name{
+    font-family: 'Poppins', sans-serif; 
+    font-size:18px;
+    color: #5e5e5e;
+}
+
+.price{
+    color: #232323;
+    font-weight: 600;
+    font-size: 1.1rem;
+    font-family: 'poppins';
+    letter-spacing: .5px;
+}
+.price:hover{
+    color: #232323;
+}
+
+.overlay{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    width: 101%;
+    height:100%;
+    background-color: rgba(92,95,236,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.buy-btn{
+    width: 160px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#FFFFFF;
+    color: #252525;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+}
+.buy-btn:hover{
+    color: #FFFFFF;
+    background-color: #f15fa3;
+    transition:  all ease 0.5s;
+}
+.box{
+    margin-top:2rem;
+    margin-bottom: 2rem;
+}
+.box:hover{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.6);
+      transition:  all ease 0.3s;
+}
+
+.box1:hover{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.6);
+      transition:  all ease 0.3s;
+
+}
+.overlay{
+    visibility: hidden;
+}
+.slider-img:hover .overlay{
+    visibility: visible;
+    animation: fade 0.5s;
+}
+/* new arrival */
+.item_name_new_aarival{
+    font-family: 'Baloo 2', cursive;
+    font-size:18px;
+    color: #5e5e5e;
+
+}
+/* End of new arrival */
+/* add to cart button */
+.addtocart{
+    width: 100%;
+}
+.addtocart span{
+    font-family: 'Raleway',sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333333;
+
+
+}
+.addtocart_disabled{
+    width: 100%;
+}
+.addtocart_disabled span{
+    font-family: 'Rubik';
+    font-size: 16px;
+    cursor:not-allowed;
+    color: #eaeaea;
+}
+/* add to cart button */
+
+/*Top Sale*/
+.owl-carousel.item.box.slider-img img{
+    overflow: hidden;
+}
+.owl-carousel .owl-nav button{
+    position: absolute;
+    top:40%;
+    outline: none;
+}
+.owl-carousel .owl-nav button:hover{
+     box-shadow: 2px 2px 30px rgba(0,0,0,0.6); 
+    color: white;
+    background-color: white;
+}
+.owl-carousel .owl-nav button.owl-prev{
+    left:0;
+}
+.owl-carousel .owl-nav button.owl-prev{
+    background-color: white;
+    color: #252525;
+    margin: 10px;   
+}
+.owl-carousel .owl-nav button.owl-prev span{
+    font-size:2.6rem;
+    color: #252525;
+    padding: .1rem;
+    margin:8px;
+}
+
+.owl-carousel .owl-nav button.owl-next{
+    right:0;
+}
+.owl-carousel .owl-nav button.owl-next span{
+    font-size:2.6rem;
+    color: #252525;
+    padding: .1rem;
+    margin:8px;
+  
+}
+.owl-carousel .owl-nav button.owl-next{
+    background-color: white;
+    color: #252525;
+    margin: 10px;   
+
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: #fff;
+    color:black;
+    text-decoration: none;
+}
+.owl-carousel.banner img{
+    overflow: hidden;
+}
+/*/Top Sale*/
+/*Special Price*/
+.grid-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid #a8a5a5;
+    padding: 0px 27px;
+}
+.filter-button span{
+    font-family: 'Lato','Gill Sans', 'Gill Sans MT';
+    font-size: 1.1rem;
+    color: #222222;
+}
+.item-special_price{
+    width:250px;
+}
+.item-name-specialprice{
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.1rem;
+    color: #5e5e5e;
+}
+/*Special Price*/
+/*Product*/
+.proceedtobuy{
+    width: 100%;
+}
+.proceedtobuy span{
+    font-family: 'Roboto',sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+}
+.product-name{
+    font-size: 1.6rem;
+    font-family: 'Baloo 2';
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.product-shortdesc{
+    font-family: 'Lato',sans-serif;
+    font-size: 16px;
+    color: #525252;
+    margin-bottom: 0;
+}
+.product-brand{
+    font-family: 'Roboto',sans-serif;
+    color: #252525;
+}
+.product-option a {
+	text-decoration:none;
+    color: #333333;
+}
+.product-option a:hover{
+    color:rgb(0, 170, 255);
+}
+.rating{
+    font-family: 'poppins',sans-serif;
+    margin-bottom: 3px;
+}
+.rating_star span{
+    padding: 1px 3px;
+    color: #f4f4f4;
+    font-size: 14px;
+    border-radius: 3px;
+    margin:0px 5px 0px 0px;
+}
+.product-price-detail tr{
+    font-family: 'Baloo 2';
+}
+.item_text{
+    font-family: 'Rubik';
+}
+.item_price span{
+    font-size: 1.4rem;
+}
+.item_price small{
+    color: #222222;
+}
+.item-mrp,.saving {
+    font-size: 1.1rem;
+} 
+.policy-types{
+    display: flex;
+}
+.policy-type{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: cadetblue;
+    border: 1px solid #ccc;
+    border-radius: 50%!important;
+    padding: 20px;
+    margin: 10px 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.policy-type a{
+    font-size: 15px;
+    font-family: 'Raleway',sans-serif;
+  
+}
+.product-option{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: auto;
+  
+    
+}
+.product-option a{
+    font-size: 16px;
+    font-family: 'Roboto';
+}
+.order-details{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Rubik',sans-serif;
+
+}
+.delivery_mark{
+    color:cadetblue ;
+}
+.laptop_color{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.laptop_color h6{
+    font-family:'Baloo Thambi 2', cursive;
+}
+.colors{
+    padding: 14px;
+    border: 1px solid #dee2e6!important;
+    border-radius: 50%!important;
+}
+.processor h6{
+    font-family: 'Raleway',sans-serif;
+}
+.processor_types{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-family: 'Rubik',serif;
+   
+}
+.processor_type{
+    border: 1px solid #dee2e6!important;
+    border-radius: 5px;
+}
+.product_desc h5{
+    font-family: 'Rubik',sans-serif;
+}
+.product_desc p{
+    font-size: 17px;
+    font-family: 'Lato';
+}
+/*Product*/
+/* my profile */
+.details{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+    padding:14px 30px ;
+    margin: 17px 0px;
+}
+.title{
+    display: flex;
+}
+.title h3{
+    font-family: 'Baloo Thambi 2', cursive;
+}
+.title h5{
+    color: rgb(105, 105, 105);
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 0;
+}
+.title span{
+    cursor: pointer;
+    color:#0d6efd;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    margin-top: 3px;
+    padding: 0px 25px;
+}
+.radio-inline{
+    font-family: 'Raleway',sans-serif;
+    font-size: 1.1rem;
+    padding-right:14px;
+
+}
+.profile {
+    display: flex;
+    padding: 18px 12px;
+    margin: 16px 0px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+}
+.profile-img img{
+    max-width: 75px;
+}
+.user-name{
+    padding:12px 8px;
+
+}
+.user-name small{
+    font-size:13px;
+    color:#4d4d4d;
+}
+.user-name h6{
+    color:#363636;
+    text-align: center;
+}
+.account {
+    box-shadow: 2px 2px 30px rgba(0.1,0,0,0.1);
+}
+.account-setting{
+    padding: 12px 18px;
+    border-bottom: 1px solid #dee2e6!important;
+    text-align: center;
+}
+.account-setting span{
+    color: rgba(0,0,0,.5)!important;
+    margin: 0px 17px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+}
+.account-info{
+    border-bottom: 1px solid #dee2e6!important;
+    padding: 9px 16px;
+}
+.account-info h6{
+    font-family: 'Rubik',sans-serif;
+    margin-bottom: 0px;
+    text-align: center;
+    color: rgba(0,0,0,.5)!important;
+}
+.no-address{
+    align-items: center;
+    justify-content: center;
+}
+.no-address img{
+    width:700px;
+    margin:14px 0px;
+}
+.no-address h2{
+    font-family: 'Baloo Thambi 2', cursive;
+    text-transform: capitalize;
+}
+.no-address h6{
+    font-family: 'Rubik', sans-serif;
+    color: rgba(0,0,0,.5)!important;
+}
+.no-address a{
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    margin:12px 0px;
+    padding:0px 18px;
+
+}
+.state_list{
+    font-size:16px;
+    border:2px solid #f0f0f0;
+    font-family: 'Poppins',sans-serif;
+}
+.term-con{
+    font-family: 'Baloo Thambi 2';
+    font-size: 15px;
+}
+/* my profile */
+/*myorder*/
+.order_outerbox{
+    width:85%;
+}
+.noorder img{
+    max-width:350px;
+}
+.noorder h2{
+    font-family: 'Baloo Thambi 2', cursive;
+    text-transform: capitalize;
+}
+.noorder h6{
+    font-family: 'Rubik', sans-serif;
+    color: rgba(0,0,0,.5)!important;
+
+}
+.noorder a{
+    font-family: 'Poppins',sans-serif;
+    margin-bottom: 20px;
+}
+.order-box{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
+    padding: 18px 0px;
+    margin: 15px 0px;
+    border-radius: 10px;
+}
+.order-box-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.order-box-img img{
+    max-width: 205px;
+    
+}
+.order-box a{
+color: #333333;
+}
+.order-box:hover{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.4);
+}
+.order-product_name{
+    color: black;
+}
+.order-product_name span,.order-product_name h5{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.4rem;
+    color: rgb(10, 10, 10);
+    font-weight: 600;
+}
+.order-product_name small{
+    font-family: 'Rubik',cursive;
+
+}
+.order-delivery_status span{
+    font-size:1.2rem;
+    font-family: 'Raleway',sans-serif;
+    font-weight: 600;
+    margin-right: 8px;
+    color: #222222;
+}
+/*myorder*/
+ 
+/* mx-2 d-flex flex-column border-right */
+/*billing*/
+.item_billing{
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    padding-top: 5px;
+    padding-bottom: 1px;
+    margin:14px 0px;
+}
+.item_billing h4{
+    font-size:20px ;
+     font-family: 'Rubik', sans-serif;
+     
+}
+/*billing*/
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@media (min-width: 220px) and (max-width: 768px){
+    .contact{
+        display: none;
+    }
+    .sub-footer{
+        border-left:none;
+    }
+    .left-item{
+        display: none;
+    }
+
+}
+.qty a:hover{
+	text-decoration:none;
+	color:red;
+}
+/*billing*/
+ .accordion .accordion__title:before {
+   content: '\f268';
+    font-family: 'Material-Design-Iconic-Font';
+    display: inline-block;
+    padding-right: 10px;
+    transition: all 0.3s ease-in-out 0s;
+}
+.accordion .accordion__title {
+    background: #f4f4f4;
+    height: 65px;
+    line-height: 65px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: "Poppins";
+    cursor: pointer;
+}
+.summary {
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+.product-confitmation{
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+}
+/*billing*/
+.total-payment h4
+{
+	font-family: 'Rubik', sans-serif;
+}
+.total-payment h5{
+	font-family: 'Baloo Thambi 2', cursive;
+}
+/*login*/
+.login_user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    
+}
+.login-userpage{
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    margin: 24px;
+    border-radius: 10px;
+}
+.greeting{
+    display: block;
+    margin-left: 12px;
+}
+
+.greeting span{
+    color: rgb(30, 30, 30);
+    font-family: 'Baloo Thambi 2', cursive;
+    font-size: 1.4rem;
+   
+}
+
+/*/login*/
+/*Register*/
+.register_user
+{
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    width: 98%;
+    margin: 24px;
+    border-radius: 10px;
+}
+/*Register*/
+/* progressbar */
+.orderpdf a:hover{
+    color:rgb(0, 170, 255);
+
+}
+.product_name a:hover{
+    color:rgb(0, 170, 255);
+
+}
+.icon-content img
+{   
+    width:40px;
+
+}
+
+/* progressbar */
+/* progressbar2 */
+.progress_bar h4{
+    font-size:2rem;
+    font-family: 'Baloo 2', sans-serif;
+    text-align: center;
+    font-weight: 600;
+}
+.progress_bar img{
+    width:80px;
+    margin: auto;
+}
+.progress_bar ul li{
+    display: inline-block;
+    width:200px;
+    position: relative;
+}
+.progress_bar ul li p{
+    text-transform: capitalize;
+    font-weight: 600;
+    font-family: 'Baloo Thambi 2', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+.progress_bar ul li .fas{
+    background: #ccc;
+    width:28px;
+    
+    color:#fff;
+    border-radius: 50%;
+    padding:5px;
+   
+}
+.progress_bar ul li .fas::after{
+    content: '';
+    background: #ccc;
+    width:205px;
+    height:6px;
+    display:block;
+    position: absolute;
+    left:0;
+    top:92px;
+    z-index: -1;
+
+}
+
+.progress_bar ul li.complete .fas{
+    background: #148e14;
+}
+.progress_bar ul li.complete  .fas::after{
+    background: #148e14;
+}
+.progress_bar ul li.process .fas{
+    background: #60aa97;
+}
+.progress_bar ul li.process  .fas::after{
+    background: #60aa97;
+}
+
+.progress_bar ul li.pending .fas{
+    background: #8a8a8a;
+}
+.progress_bar ul li.pending  .fas::after{
+    background: #8a8a8a;
+}
+.progress_bar ul li.cancelled .fas{
+    background: #ff3b3b;
+}
+.progress_bar ul li.cancelled  .fas::after{
+    background: #ff3b3b;
+}
+.progress_bar ul li.displaynon{
+    display: none;
+}
+
+.progress_bar ul li:first-child .fas::after{
+    width:105px;
+    left:100px;
+}
+.progress_bar ul li:last-child .fas::after{
+    width:105px;
+
+}
+/* progressbar2*/
+/* orderdetail */
+.order_detail h5  a{
+    color:black;
+}
+.order_detail h5 a:hover{
+    color:rgb(0, 170, 255);
+}
+.order-status{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+}
+.order-status span{
+    font-size:1.4rem;
+    font-family: 'Baloo 2',sans-serif;
+    font-weight: 600;
+}
+.cancel_order_btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cancel_order_btn button{
+    font-family: 'Rubik',sans-serif;
+    font-size: 1.3rem;
+    width: 100%;
+}
+.delivered_message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 15px 0px;
+}
+.delivered_message span{
+    font-family: 'Rubik', sans-serif;
+    font-size:1.7rem;
+    font-weight: 600;
+}
+/* orderdetail */
+
+/* orderdetail page */
+.userinfo{
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #c8cacd!important;
+}
+.userinfo_title{
+    font-family: 'Raleway',sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid #c8cacd!important;
+    white-space:nowrap;
+    padding-bottom: 5px;
+    
+}
+.order_udetail{
+    font-family: 'Poppins',sans-serif;
+    font-size: 1.3rem;
+    margin-top: 7px;
+}
+.uadd{
+    font-family: 'Baloo 2',sans-serif;
+    font-size: 1.2rem;
+}
+.order-download_invoice {
+    color:#fff;
+    font-family: 'Rubik',sans-serif;
+    font-size: 1.1rem;
+}
+.order-download_invoice:hover{
+    color: #000;
+}
+/* orderdetail page */
+/* commentsection */
+#comment_section{
+    background-color: #f0f0f0;
+}
+.comment_heading{
+font-size: 40px;
+line-height: 46px;
+font-weight: 500;
+letter-spacing: -.5px;
+font-family:'Raleway',sans-serif;
+}
+.divider{
+    position: relative; 
+    border: none;
+    height:4px;
+    width:30%;
+    background: rgb(136, 136, 136);
+}
+.subtitle span{
+    font-size:20px;
+    font-weight: 400;
+    font-family: 'Rubik',sans-serif;
+    letter-spacing: -.5px;
+    color:rgb(133, 133, 133);
+}
+.commentpart ul li{
+    text-decoration: none;
+    list-style: none;
+}
+.comment_image{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.comment_image img{
+    
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    max-width:120px;
+}
+.comment_image .quote{
+    font-size: 1.7rem;
+    font-weight: 400;
+    color:rgb(88, 88, 88);
+    line-height: -5px;
+    font-family: 'Baloo 2',cursive;
+    margin-bottom: 13px;
+}
+.comment_image .author{
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-family: 'Lato',sans-serif;
+    margin-bottom: 25px;
+}
+/* commentsection */
+.single-item__content h5 a:hover{
+    color:rgb(0, 170, 255);
+}
+/* scrolltop */
+.scroll_top{
+    position: relative;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3) ;
+    width:65px;
+    height:65px;
+    padding-top: 11px;
+    text-decoration: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    display: none;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    background-color:#05d9ff
+  
+
+}
+.scroll_top span{
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+}
+/* scrolltop */
+
+/* footer */
+.footer_emart{
+    background-color: #172337;
+    padding:30px 0 10px 0 ;
+    
+}
+.footer_data img{
+    width: 65px;
+    margin-bottom: 14px;
+}
+.footer_data p{
+    color:  #ababab;
+    font-family:'Lato','Courier New', Courier, monospace;
+    font-size:1.1rem;
+}
+.footer_data h5{
+    color: #fff;
+    font-family: 'Rubik',sans-serif;
+    text-transform: uppercase;
+
+
+}
+.footer_data a{
+    color: #6b6b6b;
+    font-family: 'Poppins',sans-serif;
+    text-transform: capitalize;
+}
+.footer_data a:hover{
+    color: #a8a5a5;
+}
+.newslatter{
+    border-left:1px solid #454d5e;
+    padding: 0 25px ;
+}
+.newslatter h4{
+    color: #fff;
+    font-family: 'Rubik',sans-serif;
+
+}
+.newslatter img{
+    width: 110%;
+}
+.footer_line{
+    border-top: 1px solid #454d5e;
+}
+.social-media {
+    margin: 16px 0px;
+
+}
+.social-media a{
+    margin: 16px;
+}
+.copyright p{
+    color: #ccc;
+    font-family: 'Montserrat','Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-size: 17px;
+}
+/* blog section */
+.item{
+    border-radius:5px;
+    position:relative;
+    width: 300px;
+    margin: auto;
+    display: block;
+}
+.card{
+    padding: 13px 9px;
+    justify-content: center;
+    align-items: center;
+}
+.card-title{
+    font-family:'Baloo 2',cursive;
+}
+.item-desc{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.item-name-blog{
+    margin:10px 0px;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+    font-size:1.2rem;
+    border-top:1px solid #494949 ;
+    border-bottom:1px solid #494949 ;
+    padding: 10px 0;
+}
+.card-text{
+    font-family: 'Raleway',serif;
+}
+.card:hover{
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.6);
+    transition:  all ease 0.3s;
+    transform: scale(1.1,1.1);
+    background-color:#fff;
+    margin-top:4rem;
+    margin-bottom:4rem;
+}
+/* End of blog section */
+/* brand pattern */
+.brand-patterns {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+    align-items: center;
+}
+.top-section-brand{
+    padding:60px;
+    margin: auto;
+    border-right: 1px solid #dee2e6!important;
+}
+.top-section-brand img{
+    width:175px;
+}
+/* End of brand pattern */
+/* heading */
+.heading{
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    text-align: center;
+    padding-top: 16px;
+}
+.subtitle{
+    margin-bottom:22px ;
+}
+/* End of heading */
+@media(max-width:768px)
+{
+    .banner{
+        display: none;
+    }
+}
+@media(max-width:1200px){
+    .banner{
+        display: none;
+    }
+}

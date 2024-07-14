@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2&family=Raleway&family=Rubik&display=swap');
+.table-bordered thead tr th, .table-bordered tbody tr th, .table-bordered tfoot tr th, .table-bordered thead tr td, .table-bordered tbody tr td, .table-bordered tfoot tr td {
+    border: none !important;
+    
+}
+.table-bordered thead tr th, .table-bordered tbody tr th, .table-bordered tfoot tr th, .table-bordered thead tr td, .table-bordered tbody tr td, .table-bordered tfoot tr td {
+    border: none !important;
+}
+.table thead tr th, .table tbody tr th, .table tfoot tr th, .table thead tr td, .table tbody tr td, .table tfoot tr td {
+    vertical-align:none;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.table-bordered thead tr th{ 
+   border: solid 1.5px black !important;
+   font-family: 'Rubik',cursive;
+    font-size: 1.4rem;
+}
+.table-bordered tbody tr td {
+    border: solid 1.5px black !important;
+}
+.container .header .logo_description_report_header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    line-height: 1rem;
+    text-align: center;
+}
+.header .logo_description_report_header img{
+    width: 100px;
+    height:100px;
+}
+.header .company_detail {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.header .company_detail span{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+#address_table
+{
+     border-collapse: collapse;
+} 
+#address td{
+    font-weight: 700;
+}
+#product_name{
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.2rem;
+}
+#product_total{
+    font-family: 'rubik',cursive;
+    font-weight: 700;
+    font-size:1.2rem;
+}
+#total td{
+    font-weight: 700;
+    font-size:1.6rem;
+    font-family: 'Rubik',cursive;
+}
+#product{
+    border-collapse: collapse;
+}
+#qty{
+    font-size:1.3rem;
+}
+#price{
+    font-size:1.3rem;
+}
+#igst{
+    font-size:1.3rem;
+}
+#address_shipping{
+    font-size:1.5rem;
+}
+#address_home{
+    font-size:1.5rem;
+    font-weight: 700;
+}

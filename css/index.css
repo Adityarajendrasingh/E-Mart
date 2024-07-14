@@ -1,0 +1,133 @@
+*{
+    padding : 0;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+}
+.container .row .header .logo_description_report_header{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    line-height: 1rem;
+    text-align: center;
+}
+.header .logo_description_report_header img{
+    width: 100px;
+    height:100px;
+}
+.header .company_detail {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.header .company_detail span{
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+.header .logo_description_report_header .brand_company{
+    text-transform: capitalize;
+    background-color: rgba(255, 25, 0, 0.5);
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    margin: auto;
+    width: 50%;
+}
+.header .logo_description_report_header .company_brand{
+    font-size: 30px;
+    font-weight: 500;
+
+}
+.header .logo_description_report_header .description{
+    color:gray;
+    font-size: 12px;
+    padding-bottom : 100px;
+}
+/* body of report style  */
+.body_report{
+    width: 100%;
+}
+.body_report  .Header_title{
+    padding-top:10px;
+    padding-bottom:10px;
+    width:inherit;
+    text-align: center; 
+    border: 1px solid black;
+    margin: 10px 0px;
+    
+}
+.body_report  .Header_title strong.title{
+    font-size: 21px;
+    margin-bottom: 10px;
+  
+}
+.body_report  .Header_title .shipping_address{
+    font-size: 18px;
+}
+.body_report .container_details{
+    width:inherit;
+
+}
+.body_report .container_details table{
+    border-spacing :0px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.body_report .container_details table tr td{
+    width:15%;
+    padding: 5px 10px;
+    border: 1px solid #000000;
+    text-align: center;
+    /* padding: 8px; */
+}
+.body_report .container_details table thead tr th{
+    width:15%;
+    padding: 5px 10px;
+    border: 1px solid #000000;
+    text-align: center;
+    /* padding: 8px; */
+}
+.body_report .container_details  .total{
+    font-weight: 600;
+}
+
+/* table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  } */
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+/* .body_report .container_details table thead tr{
+    background-color: red;
+    margin:0px;
+}
+.body_report .container_details table tbody tr:nth-child(odd){
+    background-color: rgb(135, 255, 79 ,0.3);
+}
+.body_report .container_details table tbody tr:nth-child(even){
+    background-color: rgba(252, 255, 79, 0.3);
+} */
+
+/* here is footer  */
+.row .address{
+    padding-top:50px;
+    font-size: 10px;
+}
+.row .tel{
+    font-size: 10px;
+}
