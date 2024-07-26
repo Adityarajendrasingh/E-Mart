@@ -52,7 +52,7 @@
       </div>
       <hr class="footer_line">
       <div class="copyright text-center">
-        <p>&copy; copyright 2021.Design by <a href="#">Hritik</a></p>
+        <p>&copy; copyright 2024.Design by <a href="#">Aditya</a></p>
     </div>
   </footer>
  
